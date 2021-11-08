@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function CheckBox({ name, getCheckboxStatus }) {
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState(true);
 
   const handleChange = () => {
     setValue(!value);
@@ -17,6 +17,7 @@ function CheckBox({ name, getCheckboxStatus }) {
       <input
         type="checkbox"
         name={name}
+        checked={value}
         value={value}
         onChange={handleChange}
       />
