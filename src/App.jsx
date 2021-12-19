@@ -1,29 +1,29 @@
-import { useEffect, useState } from "react";
-import CheckBox from "./components/CheckBox";
-import Slider from "./components/Slider";
+import { useEffect, useState } from 'react';
+import CheckBox from './components/CheckBox';
+import Slider from './components/Slider';
 
 const uppercase = {
-  name: "Uppercase",
-  values: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  name: 'Uppercase',
+  values: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 };
 
 const lowercase = {
-  name: "Lowercase",
-  values: "abcdefghijklmnopqrstuvwxyz",
+  name: 'Lowercase',
+  values: 'abcdefghijklmnopqrstuvwxyz',
 };
 
 const numbers = {
-  name: "Numbers",
-  values: "0123456789",
+  name: 'Numbers',
+  values: '0123456789',
 };
 
 const symbols = {
-  name: "Symbols",
+  name: 'Symbols',
   values: `${"~`!@#$%^&*()_-+={[}]|:;'<,>.?/"}${'"'}`,
 };
 
 function App() {
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [sliderValue, setSliderValue] = useState(4);
   const [pool, setPool] = useState([]);
 
@@ -48,13 +48,13 @@ function App() {
   };
 
   const generatePassword = () => {
-    const characters = pool.join("");
+    const characters = pool.join('');
     const pw = Array(sliderValue)
       .fill(characters)
       .map((item) => {
         return item[Math.floor(Math.random() * item.length)];
       })
-      .join("");
+      .join('');
     setPassword(pw);
   };
 
@@ -75,9 +75,7 @@ function App() {
     <>
       <h3>Generate password</h3>
 
-      <div className="password-container">
-        <h2>{password}</h2>
-
+      <div className="btn-container">
         <svg
           onClick={getAnotherPassword}
           className="refresh-icon"
@@ -104,12 +102,16 @@ function App() {
           />
         </svg>
       </div>
-      <Slider getSliderValue={getSliderValue} />
-
-      <CheckBox name="Uppercase" getCheckboxStatus={getCheckboxStatus} />
-      <CheckBox name="Lowercase" getCheckboxStatus={getCheckboxStatus} />
-      <CheckBox name="Numbers" getCheckboxStatus={getCheckboxStatus} />
-      <CheckBox name="Symbols" getCheckboxStatus={getCheckboxStatus} />
+      <h2 className="password">{password}</h2>
+      <div className="options-container">
+        <Slider getSliderValue={getSliderValue} />
+        <div>
+          <CheckBox name="Uppercase" getCheckboxStatus={getCheckboxStatus} />
+          <CheckBox name="Lowercase" getCheckboxStatus={getCheckboxStatus} />
+          <CheckBox name="Numbers" getCheckboxStatus={getCheckboxStatus} />
+          <CheckBox name="Symbols" getCheckboxStatus={getCheckboxStatus} />
+        </div>
+      </div>
     </>
   );
 }
